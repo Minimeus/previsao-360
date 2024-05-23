@@ -26,3 +26,37 @@ h1, h2, h3, h4 {
     margin-top: 0;
 }
 
+.container {
+    background-color: #bae7ff;
+    border: 1px solid #CED4DA;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Cores para modo luminoso */
+body.light-mode {
+    background-color: #d0e4e4; 
+    color: #212529; 
+}
+
+body .light-mode h1, h2 {
+    color: #212529; 
+}
+
+/* Cores para modo escuro */
+body.dark-mode {
+    background-color: #051d34; 
+    color: #ECF0F1; 
+}
+
+body.dark-mode .container {
+    background-color: #34495E; 
+    border-color: #2C3E50;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode h2 {
+    color: #BDC3C7; 
+}
+
