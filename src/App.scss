@@ -24,6 +24,8 @@ body {
 h1, h2, h3, h4 {
     font-family: 'Sono', sans-serif;
     margin-top: 0;
+    color: #3eb2ff; 
+
 }
 
 .container {
@@ -60,3 +62,29 @@ body.dark-mode h2 {
     color: #BDC3C7; 
 }
 
+/* Sendo uma app de meteorologia, com avisos (tempestades, etc) tem uma caixa dedicada as alertas*/
+body .light-mode .alert {
+    background-color: #FF4136; 
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+body.dark-mode .alert {
+    background-color: #8e2e23;
+    color: #ECF0F1; 
+}
+
+
+.button {
+    background-color: #FF6B6B; 
+    color: #FFFFFF; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #ff2015;
+}
