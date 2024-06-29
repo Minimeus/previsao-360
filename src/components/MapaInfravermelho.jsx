@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.scss';
 
-function MapaInfravermelho({}) {
+export default function MapaInfravermelho({}) {
   const calcularTemperaturaMedia = (tMin, tMax) => (tMin + tMax) / 2;
 
   const determinarCorPorTemperatura = (temperatura) => {
@@ -21,5 +20,3 @@ function MapaInfravermelho({}) {
     </div>
   );
 }
-
-export default MapaInfravermelho;

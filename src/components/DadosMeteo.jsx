@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './App.scss';
 
-function DadosMeteo() {
+export default function DadosMeteo() {
   const [dados, setDados] = useState([]);
   const [previsao5Dias, setPrevisao5Dias] = useState([]);
 
@@ -71,7 +70,7 @@ function DadosMeteo() {
 
   return (
     <div>
-      <h2>Previsão do Tempo Nacional</h2>
+      <h2 id="previsao-hoje">Previsão do Tempo Nacional</h2>
       <table>
         <thead>
           <tr>
@@ -98,7 +97,7 @@ function DadosMeteo() {
           ))}
         </tbody>
       </table>
-      <h2>Previsão do Tempo Nacional - 5 Dias</h2>
+      <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
       {previsao5Dias.map((previsaoPorLocal, index) => (
         <div key={index}>
           <h3>{previsaoPorLocal[0].local}</h3>
@@ -127,5 +126,3 @@ function DadosMeteo() {
     </div>
   );
 }
-
-export default DadosMeteo;
