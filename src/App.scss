@@ -18,6 +18,10 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+h1 {
+    display: flex;
+    justify-content: center;  
+}
 
 /* Sono sarà para os titulos */
 h1, h2, h3, h4 {
@@ -26,7 +30,7 @@ h1, h2, h3, h4 {
     color: #3eb2ff; 
 }
 
-.container {
+.App {
     background-color: #bae7ff;
     border: 1px solid #CED4DA;
     padding: 20px;
@@ -50,7 +54,7 @@ body.dark-mode {
     color: #ECF0F1; 
 }
 
-body.dark-mode .container {
+body.dark-mode .App {
     background-color: #34495E; 
     border-color: #2C3E50;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
@@ -61,30 +65,54 @@ body.dark-mode h2 {
 }
 
 /* Sendo uma app de meteorologia, com avisos (tempestades, etc) tem uma caixa dedicada as alertas*/
-body .light-mode .alert {
-    background-color: #FF4136; 
-    color: #FFFFFF;
+
+body .alert {
     padding: 10px;
     border-radius: 4px;
+
+    &.light-mode {
+        background-color: #ff4136;
+        color: #fff;
+    }
+
+    &.dark-mode {
+        background-color: #8e2e23;
+        color: #ecf0f1;
+    }
 }
 
-body.dark-mode .alert {
-    background-color: #8e2e23;
-    color: #ECF0F1; 
+
+nav {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display :flex;
+        justify-content: center;
+        
+        li {
+            display: inline-block;
+            margin-right: 10px;
+
+            .button {
+                text-decoration : none;
+                background-color: #FF6B6B; 
+                color: #FFFFFF; 
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition:background-color 0.3s;
+            
+                &:hover {
+                    background-color: #ff2015;
+                }
+            }
+        }
+    }
 }
 
-.button {
-    background-color: #FF6B6B; 
-    color: #FFFFFF; 
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #ff2015;
-}
 
 //Mapa Infravermelho na função canvas com butoes ou barra para evoluir no tempo 
 
