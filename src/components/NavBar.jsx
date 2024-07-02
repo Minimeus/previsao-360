@@ -9,7 +9,7 @@ export default function NavBar() {
 
         <li><NavLink to="/dados-meteo#previsao-hoje"className="button">Meteorologia de Hoje</NavLink></li>
 
-{/* como redirecionar so para uma parte do return ? Perguntar Ivo */}
+{/* como redirecionar so para uma parte do return ? Perguntar Ivo => Switch de react router dom ? */}
         <li><NavLink className="button" to="/dados-meteo#previsao-5dias">Previsao de 5 dias</NavLink></li>
 
         <li><NavLink to="/mapa-infravermelho"className="button">Mapa Infravermelho</NavLink></li>
@@ -18,5 +18,7 @@ export default function NavBar() {
 
       </ul>
     </nav>
+
+    
   );
 }

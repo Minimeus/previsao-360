@@ -6,9 +6,6 @@ export default function Main() {
     <div>
       <p>Meteorologia intuitiva para todos</p>
       <i className="qi-300-fill"></i>
-      <div className="map-container">
-        <MapaInfravermelho />
-      </div>
     </div>
   );
 }

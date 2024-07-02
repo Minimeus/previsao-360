@@ -1,8 +1,15 @@
+//Amelhorar : criar uma verificacao de quanto tempo esta no localstorage a informacao, se menos de 3 horas refazer (Utilizar stringy para a data do localstorage, com a criacao de varios const (getItem e setItem de localstorage) no use effect) => Mas depois deu problema, devido a tempo de delivery tive que pausar a questao do numero de chamadas APIs. Como no projeto "forms".
+
 import React, { useState, useEffect } from 'react';
+
+//const storageTime = 3 * 60 * 60 * 1000;
 
 export default function DadosMeteo() {
   const [dados, setDados] = useState([]);
   const [previsao5Dias, setPrevisao5Dias] = useState([]);
+  const [displaySection, setDisplaySection] = useState([]);
+
+
 
   useEffect(() => {
     let weatherTypeMap = {};
@@ -67,7 +74,30 @@ export default function DadosMeteo() {
       });
   }, []);
 
-  return (
+
+  const handleHashChange = () => {
+    const hash = window.location.hash;
+    if (hash === '#previsao-5dias') {
+      setDisplaySection('cincodias');
+    } else {
+      setDisplaySection('hoje');
+    }
+  };
+  
+  useEffect(() => {
+     // este useeffect fica attento ao # utilisado en NavBar.jsx (= window.location ) e procura o id do # para ir para o sitio desse id
+
+    // para que ao clicar nos dois butoes de seguida seja realmente toomado em conta, adicionei addEventListener que verifica se o hash da pagina muda  => Nao funciona : Ivo quando reclico ele nao nota
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+
+    return () => {
+      //removeeventlistener para evitar leaks e duplicos
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  const Hoje = (
     <div>
       <h2 id="previsao-hoje">Previsão do Tempo Nacional</h2>
       <table>
@@ -96,7 +126,15 @@ export default function DadosMeteo() {
           ))}
         </tbody>
       </table>
-      <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
+    </div>
+
+)
+
+//modifiquei para criar diretamenta as duas const para poder chama-lhas diretamente
+
+const cincoDias = (
+  <div>
+          <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
       {previsao5Dias.map((previsaoPorLocal, index) => (
         <div key={index}>
           <h3>{previsaoPorLocal[0].local}</h3>
@@ -122,6 +160,13 @@ export default function DadosMeteo() {
           </table>
         </div>
       ))}
-    </div>
+  </div>
+)
+
+  return (
+    <div>
+      {displaySection === 'hoje' && Hoje}
+      {displaySection === 'cincodias' && cincoDias}
+  </div>
   );
 }
