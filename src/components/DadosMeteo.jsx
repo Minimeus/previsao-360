@@ -7,7 +7,12 @@ import React, { useState, useEffect } from 'react';
 export default function DadosMeteo() {
   const [dados, setDados] = useState([]);
   const [previsao5Dias, setPrevisao5Dias] = useState([]);
-  const [displaySection, setDisplaySection] = useState([]);
+  //dar display default
+  const [displaySection, setDisplaySection] = useState("hoje");
+
+  const [locations, setLocations] = useState([]);//array para meter todas as localizacoes
+
+  const [selectedLocation, setSelectedLocation] = useState('');//empty by default
 
 
 
@@ -35,6 +40,8 @@ export default function DadosMeteo() {
           //propriedade data do API 
           //nomeadamente : globalIdLocal (identificador do local) e local (nome PT do local)
           const localData = dadosLocais.data;
+          // para poder selecionar na dropdown
+          setLocations(localData); 
 
           const globalIdLocais = localData.map(local => local.globalIdLocal);
           console.log(globalIdLocais);
@@ -77,6 +84,7 @@ export default function DadosMeteo() {
 
   const handleHashChange = () => {
     const hash = window.location.hash;
+    console.log("helo");
     if (hash === '#previsao-5dias') {
       setDisplaySection('cincodias');
     } else {
@@ -85,17 +93,17 @@ export default function DadosMeteo() {
   };
   
   useEffect(() => {
-     // este useeffect fica attento ao # utilisado en NavBar.jsx (= window.location ) e procura o id do # para ir para o sitio desse id
-
-    // para que ao clicar nos dois butoes de seguida seja realmente toomado em conta, adicionei addEventListener que verifica se o hash da pagina muda  => Nao funciona : Ivo quando reclico ele nao nota
+      // este useeffect fica attento ao # utilisado en NavBar.jsx (= window.location ) e procura o id do # para ir para o sitio desse id
     window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
 
     return () => {
       //removeeventlistener para evitar leaks e duplicos
       window.removeEventListener('hashchange', handleHashChange);
-    };
+    };     
   }, []);
+
+
+  //Para poder chamar estas consts diretamente
 
   const Hoje = (
     <div>
@@ -108,7 +116,8 @@ export default function DadosMeteo() {
             <th>Temperatura Máxima (°C)</th>
             <th>Classe da Intensidade do Vento</th>
             <th>Probabilidade de Precipitação (%)</th>
-            <th>Classe da Intensidade da Precipitação</th>
+            
+            {/* Nao tem dados quase nunca <th>Classe da Intensidade da Precipitação</th> */}
             <th>Condições Meteorológicas</th>
           </tr>
         </thead>
@@ -120,7 +129,7 @@ export default function DadosMeteo() {
               <td>{dado.tMax}</td>
               <td>{dado.classWindSpeed}</td>
               <td>{dado.probPrecipita}</td>
-              <td>{dado.classPrecInt}</td>
+              {/* <td>{dado.classPrecInt}</td> */}
               <td>{dado.descWeatherTypePT}</td>
             </tr>
           ))}
@@ -130,38 +139,65 @@ export default function DadosMeteo() {
 
 )
 
-//modifiquei para criar diretamenta as duas const para poder chama-lhas diretamente
+
+//se na dropdown a localidade mudar
+const handleLocationChange = (event) => { 
+    setSelectedLocation(event.target.value);
+  };
+
+const Local5Dias = previsao5Dias.filter(previsao => {
+  if (previsao.lengh === 0) return false;
+  return previsao[0].local === selectedLocation ;
+});
+
 
 const cincoDias = (
   <div>
-          <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
-      {previsao5Dias.map((previsaoPorLocal, index) => (
-        <div key={index}>
-          <h3>{previsaoPorLocal[0].local}</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Dia</th>
-                <th>Temperatura Mínima (°C)</th>
-                <th>Temperatura Máxima (°C)</th>
-                <th>Condições Meteorológicas</th>
-              </tr>
-            </thead>
-            <tbody>
-              {previsaoPorLocal.map((dado, index) => (
-                <tr key={index}>
-                  <td>Dia {index + 1}</td>
-                  <td>{dado.tMin}</td>
-                  <td>{dado.tMax}</td>
-                  <td>{dado.descWeatherTypePT}</td>
+      <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
+      <select onChange={handleLocationChange} value={selectedLocation}>
+        <option value="">Localidade</option>
+        {locations.map((location, index) => (
+          <option key={index} value={location.local}>{location.local}</option>
+        ))}
+      </select>
+
+      {Local5Dias.length > 0 ?
+      // se uma localidade tiver sido selecionada e o array local5Dias tiver algo, entao...
+      (
+        //iterar por cime do array com o map e gerar a tabela
+        Local5Dias.map((previsaoPorLocal, index) => (
+          <div key={index}>
+            <h3>{previsaoPorLocal[0].local}</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Dia</th>
+                  <th>Temperatura Mínima (°C)</th>
+                  <th>Temperatura Máxima (°C)</th>
+                  <th>Condições Meteorológicas</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
-  </div>
-)
+              </thead>
+              <tbody>
+                {previsaoPorLocal.map((dado, index) => (
+                  <tr key={index}>
+                    <td>Dia {index + 1}</td>
+                    <td>{dado.tMin}</td>
+                    <td>{dado.tMax}</td>
+                    <td>{dado.descWeatherTypePT}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))
+
+        //Senao houver uma localidade selecionada, entao selecione uma 
+      ) : (
+        <p>Por favor selecione a sua localidade.</p>
+      )}
+    </div>
+  );
+
 
   return (
     <div>
