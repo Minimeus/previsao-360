@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 
 
 //Import os ficheiros do projeto para esta
-import Main from './components/Main';
 import DadosMeteo from './components/DadosMeteo';
 import NavBar from './components/NavBar';
 import MapaInfravermelho from './components/MapaInfravermelho';
@@ -37,43 +36,30 @@ function App() {
   return (
       <div className="App">
       <header className="App-header">
-      <h1>Previsão Meteorológica</h1>
-        <button onClick={toggleDarkMode} className="dark-mode-button">
-          {isDarkMode ? 'Modo Claro' : 'Modo Escuro'}
+      <h1>Previsão Meteorológica   <i className="qi-300-fill"></i></h1>
+      <button onClick={toggleDarkMode} className="dark-mode-button">
+          {window.innerWidth > 1200 ? (
+            isDarkMode ? 'Modo Claro' : 'Modo Escuro'
+          ) : (
+            isDarkMode ?  <i className="qi-150"></i> :  <i className="qi-100"></i>
+          )
+            }
         </button>
       </header>
       <main>
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<MapaInfravermelho />} />
           <Route path="/dados-meteo" element={<DadosMeteo />} />
-          <Route path="/mapa-infravermelho" element={<MapaInfravermelho />} />
         </Routes>
         </BrowserRouter>
         </main>
+        <footer>
+          {/* encontrar o que meter aqui dentro : formulario alertas ? */}
+        </footer>
       </div>
   );
 }
 
 export default App;
-
-
-  /* tentei utilizar SO toggle mas nao estava a impactar o resto (fora do titulo e do botao), acredito que React-router-dom devia estar a impactar a situacao => Por isso encontrei e adicionei classList
-  
-    const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  };
-
-  return (
-    <div className={`App ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      <header className="App-header">
-        <h1>Previsão Meteorológica</h1>
-        <button onClick={toggleDarkMode} className="dark-mode-button">
-          {isDarkMode ? 'Modo Claro' : 'Modo Escuro'}
-        </button>
-      </header>
-
-  */

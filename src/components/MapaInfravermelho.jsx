@@ -15,15 +15,32 @@ const determinarCorPorTemperatura = (temperatura) => {
   //Vermelho para <30
   return '#ff0000'; 
 };
-
 const MapaInfravermelho = () => {
-    return (
-      <div className="map-container">
-          <h2>Mapa Infravermelho de Portugal</h2>
-          <div className="map-svg-container">
+  const [showMapa, setShowMapa] = useState(true);
+
+  const toggleShow = () => {
+    setShowMapa(prevShow => !prevShow);
+  };
+
+  return (
+    <div>
+      {window.innerWidth > 1200 ? (
+        <div className="map-svg-container">
+          <img src="/portugal.svg" alt="Temperaturas das Localidades portuguesas" />
+        </div>
+      ) : (
+        <div>
+          <button onClick={toggleShow} className="button" id="mapa">
+            {showMapa ? 'Esconder Mapa Infravermelho' : 'Mostrar Mapa Infravermelho'}
+          </button>
+          {showMapa && (
+            <div className="map-svg-container">
               <img src="/portugal.svg" alt="Temperaturas das Localidades portuguesas" />
-          </div>
-      </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

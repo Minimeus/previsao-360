@@ -12,8 +12,6 @@ export default function NavBar() {
         <li><a href="/dados-meteo#previsao-hoje" className="button"> Meteorologia de Hoje </a></li>
         <li><a href="/dados-meteo#previsao-5dias" className="button"> Previsao de 5 dias </a></li>
 
-        <li><NavLink to="/alertas"className="button">Alertas</NavLink></li>
-
       </ul>
     </nav>
 

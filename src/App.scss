@@ -1,61 +1,165 @@
-/* Google Font Sono e Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Sono:wght@200..800&display=swap');
+/* Codigo scss validado no https://jigsaw.w3.org/css-validator/validator */
 
-/* Icons de Meteorologia */
-@import url('https://cdn.jsdelivr.net/npm/qweather-icons@1.6.0/font/qweather-icons.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Sono:wght@200..800&display=swap');/* Google Font Sono e Montserrat */
+@import url('https://cdn.jsdelivr.net/npm/qweather-icons@1.6.0/font/qweather-icons.css'); /* Icons de Meteorologia */
 
-/* Icons */
-.icon {
-    font-family: 'qweather-icons', sans-serif;
+
+/* Reset do Css 
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-/* Estilo CSS dentro de ficheiro SCSS : fontes, cores, icons */
+/* Responsive seguindo instrucoes*/
 
-/* Montserrat sarà para o corpo, o texto normal */
+/* computador */
+@media (min-width: 780px) {
+}
+/* telefone */
+@media (max-width: 420px) {
+    .App {
+        
+        max-width: 95%;
+        min-width : 95%;
+    }
+
+}
+
+/* tablet */
+@media (max-width: 780px) {
+    .App{
+        max-width: 95%;
+        min-width : 95%;
+        padding: 10px;
+    }
+
+}
+
+
+/* Um wrapper (App) com os tamanhos maximos e minimos */
+.App {
+    background-color: #bae7ff;
+    border: 1px solid #CED4DA;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    margin: 0 auto; 
+    margin-bottom: 5vh;
+    padding : 5vw;
+}
+
+header {
+    background-color: #3eb2ff00;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative; 
+
+}
+header h1 {
+    margin: 0;
+    display: flex;
+    justify-content: center; 
+    font-weight: bold;
+    font-size :2.5em;
+    color: #3eb2ff;
+
+}
+
+footer {
+    margin-top: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #3eb2ff;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* Estilizacao dos icons */
+.icon {
+    font-family: 'qweather-icons', serif;
+}
+
+/* Montserrat serà para o body e o texto normal */
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-h1 {
-    display: flex;
-    justify-content: center;  
-}
 
-/* Sono sarà para os titulos */
-h1, h2, h3, h4 {
+/* Sono serà para os titulos */
+h1, h2 {
     font-family: 'Sono', sans-serif;
-    margin-top: 0;
-    color: #3eb2ff; 
+    margin-top: 0; 
+
 }
 
-h2{
-    margin-top : 30px;
+h2 {
+    margin-top: 30px;
     margin-bottom: 10px;
-}
-
-.App {
-    background-color: #bae7ff;
-    border: 1px solid #CED4DA;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    font-weight: bold;
+    font-size :1.5em;
 }
 
 /* Cores para modo luminoso */
 body.light-mode {
-    background-color: #d0e4e4; 
+    background-color: #e3ffff; 
     color: #212529; 
-    h2 {
-        color: #172432; 
-    }
 }
 
-/* Cores para modo escuro */
+body.light-mode h2 {
+    color: #172432; 
+}
 
+/* Butao para modo escuro */
 .dark-mode-button {
-    background-color: #FF6B6B;
+    background-color: #0a1945;
     color: #FFFFFF;
     border: none;
     padding: 10px 20px;
@@ -65,13 +169,24 @@ body.light-mode {
     font-size: 16px;
     font-family: 'Sono', sans-serif;
     margin: 20px;
-
-    &:hover {
-        background-color: #ff2015;
-    }
+    position: absolute;
+    top: 18%;
+    right: 20px; 
+    transform: translateY(-50%);
 }
+
+.dark-mode-button i{
+    font-size: 25px; 
+
+}
+
+.dark-mode-button:hover {
+    background-color: #1942be;
+}
+
+/* Cores para modo escuro */
 body.dark-mode {
-    background-color: #051d34; 
+    background-color: #1e5c97; 
     color: #ECF0F1; 
 }
 
@@ -85,75 +200,85 @@ body.dark-mode h2 {
     color: #BDC3C7; 
 }
 
-/* Sendo uma app de meteorologia, com avisos (tempestades, etc) tem uma caixa dedicada as alertas*/
-
+/* Sendo uma app de meteorologia, com avisos (tempestades, etc) tem uma caixa dedicada as alertas */
 body .alert {
     padding: 10px;
     border-radius: 4px;
-
-    &.light-mode {
-        background-color: #ff4136;
-        color: #fff;
-    }
-
-    &.dark-mode {
-        background-color: #8e2e23;
-        color: #ecf0f1;
-    }
 }
 
+body .alert.light-mode {
+    background-color: #ff4136;
+    color: #fff;
+}
+
+body .alert.dark-mode {
+    background-color: #8e2e23;
+    color: #ecf0f1;
+}
 
 nav {
     margin-top: 30px;
     margin-bottom: 30px;
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        display :flex;
-        justify-content: center;
-        
-        li {
-            display: inline-block;
-            margin-right: 10px;
-
-            .button {
-                text-decoration : none;
-                background-color: #FF6B6B; 
-                color: #FFFFFF; 
-                border: none;
-                padding: 10px 20px;
-                cursor: pointer;
-                transition:background-color 0.3s;
-            
-                &:hover {
-                    background-color: #ff2015;
-                }
-            }
-        }
-    }
 }
 
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
 
-//Mapa Infravermelho na função canvas com butoes ou barra para evoluir no tempo
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
 
+nav ul li .button {
+    text-decoration: none;
+    background-color: #FF6B6B; 
+    color: #FFFFFF; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+nav ul li .button:hover {
+    background-color: #ff2015;
+}
+
+/* Mapa Infravermelho */
+#mapa {
+    text-decoration: none;
+    background-color: #0e7785;
+    padding : 10px 20px;
+    color: #FFFFFF; 
+    border: 2px solid transparent;
+    padding: 10px 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Sono', sans-serif;
+    
+}
 .map-svg-container {
     text-align: center;
-    margin-top: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width : 70%;
-
+    width: 70%;
+    background-color: #8fd2ff;
+    margin: 20px auto;
+    
 }
 
 .map-svg-container img {
     width: 100%;
-    
 }
 
-// Estilizacao das tabelas de dados meteorologicas 
-
+/* Estilizacao das tabelas de dados meteorologicas */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -169,6 +294,8 @@ thead {
     background-color: #3eb2ff;
     color: #fff;
     text-align: center;
+    /* quando esta responsive o thead tem que se mostrat corretamente */
+    display: table-header-group;
 }
 
 th, td {
@@ -193,7 +320,7 @@ td {
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Para o dark mode */
+/* Tabela Para o dark mode */
 body.dark-mode table {
     background-color: #2C3E50;
     color: #ECF0F1;
