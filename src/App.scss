@@ -56,32 +56,68 @@ table {
 
 /* Responsive seguindo instrucoes*/
 
+/* telefones vao até 420px de width*/
+@media (max-width: 420px) {
+    .App {
+        padding: 5vw; 
+
+    }
+    .header h1 {
+        position : relative;
+        z-index : 1;
+    }
+    nav ul {
+        /* tornar menu em coluna para caber, menu hamburger seria melhor */
+        flex-direction: column; 
+        align-items: center; 
+    }
+    nav ul li {
+        margin: 20px ;
+    }
+
+    .footer  {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .campos-alerta  {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    table {
+        width:100%;
+        overflow: auto;
+        padding : 0;
+        margin : 0;
+    }
+}
+
+/* Tablet min e maximo */
+@media (min-width: 421px) and (max-width: 1024px) {
+    .App {
+        padding: 5vw;
+    }
+    nav ul {
+        /* tornar menu em coluna para caber, menu hamburger seria melhor */
+        flex-direction: column; 
+        align-items: center; 
+    }
+    nav ul li {
+        margin: 20px ;
+    }
+
+}
+
 /* computador */
 @media (min-width: 780px) {
 }
-/* telefone */
-@media (max-width: 420px) {
-    .App {
-        
-        max-width: 95%;
-        min-width : 95%;
-    }
-
-}
-
-/* tablet */
-@media (max-width: 780px) {
-    .App{
-        max-width: 95%;
-        min-width : 95%;
-        padding: 10px;
-    }
-
-}
-
 
 /* Um wrapper (App) com os tamanhos maximos e minimos */
 .App {
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
     background-color: #bae7ff;
     border: 1px solid #CED4DA;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 

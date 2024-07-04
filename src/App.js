@@ -17,7 +17,7 @@ function App() {
   //para o Darkmode
   const [isDarkMode, setIsDarkMode] = useState(false); //false for light mode
 
-  //se isDarkMode muda entao useEffect entra em jogo
+  //se isDarkMode muda entao useEffect entra em jogo = useEffect é um componente reativo que necessita certas condicoes. Aqui a sua dependencia é isDarkMode
   useEffect(() => {
     // Aplicar a classe do modo escuro a todo o body e retirar light mode
     if (isDarkMode) {
@@ -38,7 +38,7 @@ function App() {
   return (
       <div className="App">
       <header className="App-header">
-      <h1>Previsão Meteorológica   <i className="qi-300-fill"></i></h1>
+      <h1>Previsão Meteorológica   </h1>
       <button onClick={toggleDarkMode} className="dark-mode-button">
           {window.innerWidth > 1200 ? (
             isDarkMode ? 'Modo Claro' : 'Modo Escuro'
