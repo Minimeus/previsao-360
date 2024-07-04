@@ -8,7 +8,7 @@ export default function DadosMeteo() {
   const [dados, setDados] = useState([]);
   const [previsao5Dias, setPrevisao5Dias] = useState([]);
   //dar display default
-  const [displaySection, setDisplaySection] = useState("hoje");
+  const [displaySection, setDisplaySection] = useState(window.location.hash === '#previsao-5dias'? "cincodias": "hoje");
 
   const [locations, setLocations] = useState([]);//array para meter todas as localizacoes
 

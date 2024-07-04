@@ -54,6 +54,9 @@ table {
 	border-spacing: 0;
 }
 
+
+
+
 /* Responsive seguindo instrucoes*/
 
 /* telefones vao até 420px de width*/
@@ -62,10 +65,21 @@ table {
         padding: 5vw; 
 
     }
-    .header h1 {
+    .header {
         position : relative;
-        z-index : 1;
     }
+
+    .header h1 {
+        position : absolute;
+        top : 20px;
+        margin : 0px;
+    }
+
+    .dark-mode-button {
+        position: absolute;
+        top : 5px;
+    }
+
     nav ul {
         /* tornar menu em coluna para caber, menu hamburger seria melhor */
         flex-direction: column; 
@@ -94,7 +108,7 @@ table {
 }
 
 /* Tablet min e maximo */
-@media (min-width: 421px) and (max-width: 1024px) {
+@media (min-width: 421px) and (max-width: 780px) {
     .App {
         padding: 5vw;
     }

@@ -38,7 +38,6 @@ function App() {
   return (
       <div className="App">
       <header className="App-header">
-      <h1>Previsão Meteorológica   </h1>
       <button onClick={toggleDarkMode} className="dark-mode-button">
           {window.innerWidth > 1200 ? (
             isDarkMode ? 'Modo Claro' : 'Modo Escuro'
@@ -47,6 +46,7 @@ function App() {
           )
             }
         </button>
+      <h1>Previsão Meteorológica   </h1>
       </header>
       <main>
       <BrowserRouter>
