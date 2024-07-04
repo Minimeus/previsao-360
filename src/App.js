@@ -7,6 +7,8 @@ import React, { useState, useEffect } from 'react';
 import DadosMeteo from './components/DadosMeteo';
 import NavBar from './components/NavBar';
 import MapaInfravermelho from './components/MapaInfravermelho';
+import Alertas from './components/Alertas';
+import MinhasAlertas from './components/MinhasAlertas';
 
 import './App.scss';
 
@@ -52,11 +54,12 @@ function App() {
         <Routes>
           <Route path="/" element={<MapaInfravermelho />} />
           <Route path="/dados-meteo" element={<DadosMeteo />} />
+          <Route path="//my-alertas" element={<MinhasAlertas />} />
         </Routes>
         </BrowserRouter>
         </main>
         <footer>
-          {/* encontrar o que meter aqui dentro : formulario alertas ? */}
+          <Alertas />
         </footer>
       </div>
   );

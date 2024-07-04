@@ -108,11 +108,13 @@ header h1 {
 }
 
 footer {
-    margin-top: 10px;
-    padding: 10px 20px;
+    margin: 10px auto;
+    padding: 10px 10px;
     text-align: center;
     color: #fff;
     background-color: #3eb2ff;
+    width: 100%;
+    
 }
 
 footer p {
@@ -141,10 +143,17 @@ h1, h2 {
 }
 
 h2 {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
     font-weight: bold;
     font-size :1.5em;
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 1px 1px #000000;
 }
 
 /* Cores para modo luminoso */
@@ -201,20 +210,26 @@ body.dark-mode h2 {
 }
 
 /* Sendo uma app de meteorologia, com avisos (tempestades, etc) tem uma caixa dedicada as alertas */
-body .alert {
+.formulario {
     padding: 10px;
     border-radius: 4px;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-body .alert.light-mode {
-    background-color: #ff4136;
-    color: #fff;
+.campos-alerta{
+    display: flex;
+    align-items : center;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin : auto;
+    width : 45%;
+    justify-content: space-between ;
+    
 }
 
-body .alert.dark-mode {
-    background-color: #8e2e23;
-    color: #ecf0f1;
-}
+/* NavBar */
 
 nav {
     margin-top: 30px;
@@ -252,8 +267,14 @@ nav ul li .button:hover {
 
 /* Mapa Infravermelho */
 #mapa {
+    background-color: #8fd2ff;
+}
+
+#select-local {
+    background-color: #3eb2ff;
+}
+#mapa, #select-local {
     text-decoration: none;
-    background-color: #0e7785;
     padding : 10px 20px;
     color: #FFFFFF; 
     border: 2px solid transparent;
@@ -261,16 +282,23 @@ nav ul li .button:hover {
     border-radius: 8px;
     font-size: 16px;
     font-family: 'Sono', sans-serif;
+    width: 100%;
+    margin: 20px auto;
+    display: center ;
     
 }
+
+
+
 .map-svg-container {
-    text-align: center;
-    padding: 20px;
+    
+    padding: 10px 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    background-color: #8fd2ff;
+    width: 100%;
     margin: 20px auto;
+    background-color: #8fd2ff;
+    display: center ;
     
 }
 

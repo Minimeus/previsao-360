@@ -59,7 +59,6 @@ export default function DadosMeteo() {
                     tMax: firstDayData.tMax,
                     classWindSpeed: firstDayData.classWindSpeed,
                     probPrecipita: firstDayData.precipitaProb,
-                    classPrecInt: firstDayData.classPrecInt,
                     descWeatherTypePT: weatherTypeMap[firstDayData.idWeatherType]
                   };
 
@@ -154,7 +153,7 @@ const Local5Dias = previsao5Dias.filter(previsao => {
 const cincoDias = (
   <div>
       <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
-      <select onChange={handleLocationChange} value={selectedLocation}>
+      <select id="select-local" onChange={handleLocationChange} value={selectedLocation}>
         <option value="">Localidade</option>
         {locations.map((location, index) => (
           <option key={index} value={location.local}>{location.local}</option>
@@ -193,7 +192,7 @@ const cincoDias = (
 
         //Senao houver uma localidade selecionada, entao selecione uma 
       ) : (
-        <p>Por favor selecione a sua localidade.</p>
+        <p>Por favor, selecione a sua localidade.</p>
       )}
     </div>
   );
