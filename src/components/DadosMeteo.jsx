@@ -14,6 +14,10 @@ export default function DadosMeteo() {
 
   const [selectedLocation, setSelectedLocation] = useState('');//empty by default
 
+/*   const calcularTemperaturaMedia = (tMin, tMax) => (tMin + tMax) / 2;
+
+  const [temperaturasMedias, setTemperaturasMedias] = useState([]); */
+
 
 
   useEffect(() => {
@@ -53,6 +57,17 @@ export default function DadosMeteo() {
                 .then(dataMeteo => {
                   //reunir por dia
                   const firstDayData = dataMeteo.data[0];
+
+
+                   /* const temperaturasMedia = calcularTemperaturaMedia(firstDayData.tMin, firstDayData.tMax); 
+                  setTemperaturasMedias(prevState => [
+                    ...prevState,
+                    { local: local.local, temperaturaMedia: temperaturasMedia }
+                  ]); 
+
+                  console.log(setTemperaturasMedias); */
+
+
                   const newData = {
                     local: local.local,
                     tMin: firstDayData.tMin,
@@ -83,7 +98,6 @@ export default function DadosMeteo() {
 
   const handleHashChange = () => {
     const hash = window.location.hash;
-    console.log("helo");
     if (hash === '#previsao-5dias') {
       setDisplaySection('cincodias');
     } else {
@@ -135,7 +149,7 @@ export default function DadosMeteo() {
         </tbody>
       </table>
     </div>
-
+    
 )
 
 
@@ -153,6 +167,8 @@ const Local5Dias = previsao5Dias.filter(previsao => {
 const cincoDias = (
   <div>
       <h2 id="previsao-5dias">Previsão do Tempo Nacional - 5 Dias</h2>
+
+      {/* selecionar a localidade */}
       <select id="select-local" onChange={handleLocationChange} value={selectedLocation}>
         <option value="">Localidade</option>
         {locations.map((location, index) => (
@@ -196,7 +212,7 @@ const cincoDias = (
       )}
     </div>
   );
-
+ 
 
   return (
     <div>

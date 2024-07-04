@@ -91,7 +91,7 @@ export default function Alertas() {
                         aria-label="Localidade"
                         placeholder="Localidade"
                         required />
-                    <div>
+                    <div id="Validar">
                         <button type="submit">Validar dados</button>
                     </div>
                 </div>
