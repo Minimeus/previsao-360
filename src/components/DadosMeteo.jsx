@@ -115,6 +115,101 @@ export default function DadosMeteo() {
     };     
   }, []);
 
+  /* Para responsive : quando o écra é menos de 600 width, entao os titulos da tabela ajustam-se */
+
+  const tamanhoTitulos = () => {
+    if (window.innerWidth > 600) {
+      return (
+        <>
+          <th>Dia</th>
+          <th>Temperatura Mínima (°C)</th>
+          <th>Temperatura Máxima (°C)</th>
+          <th>Condições Meteorológicas</th>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <th>Dia</th>
+          <th>Mínimas</th>
+          <th>Máximas</th>
+          <th>Condições</th>
+        </>
+      );
+    }
+  };
+
+  //sendo uma tabela maior, aumentei o width para os titulos
+  const tamanhoTitulosHoje = () => {
+    if (window.innerWidth > 900) {
+      return (
+        <>
+            <th>Local</th>
+            <th>Temperatura Mínima (°C)</th>
+            <th>Temperatura Máxima (°C)</th>
+            <th>Classe da Intensidade do Vento</th>
+            <th>Probabilidade de Precipitação (%)</th>
+            <th>Condições Meteorológicas</th>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <th>Local</th>
+          <th>Mínimas</th>
+          <th>Máximas</th>
+          <th>Tempo</th>
+        </>
+      );
+    }
+  };
+
+  /* https://javascript.info/switch */
+  const iconesMeteo = (condicao) => {
+    switch (condicao) {
+      case 'Céu limpo':
+        return <i className="qi-100-fill"></i>;
+      case 'Chuvisco':
+      case 'Aguaceiros/chuva fracos':
+      case 'chuva fraca':
+      case 'chuvisco':
+        return <i className="qi-309-fill"></i>;
+      case 'Aguaceiros/chuva':
+      case 'Aguaceiros/chuva fortes':
+      case 'Chuva/aguaceiros':
+      case 'Chuva/aguaceiros forte':
+      case 'Períodos de chuva':
+      case 'Períodos de chuva forte':
+      case 'Períodos de chuva fraca':
+        return <i className="qi-300-fill"></i>;
+      case 'Aguaceiros e possibilidade de trovoada':
+      case 'Chuva e possibilidade de trovoada':
+      case 'Aguaceiros e possibilidade de trovoada':
+      case 'Trovoada':
+        return <i className="qi-303-fill"></i>;
+      case 'Granizo':
+      case 'Geada':
+        return <i className="qi-304-fill"></i>;
+      case 'Céu com períodos de muito nublado':
+      case 'Céu nublado':
+      case 'Nebulosidade convectiva':
+      case 'Céu muito nublado ou encoberto':
+      case 'Céu parcialmente nublado':
+      case 'Céu pouco nublado':
+      case 'Nevoeiro ou nuvens baixas':
+      case 'Neblina':
+      case 'Nevoeiro':
+      case 'Céu nublado por nuvens altas':
+        return <i className="qi-101-fill"></i>;
+      case 'Aguaceiros de neve':
+      case 'Chuva e Neve':
+      case 'Neve':
+        return <i className="qi-2215"></i>;
+      default:
+        return condicao;
+    }
+  };
+
 
   //Para poder chamar estas consts diretamente
 
@@ -124,14 +219,7 @@ export default function DadosMeteo() {
       <table>
         <thead>
           <tr>
-            <th>Local</th>
-            <th>Temperatura Mínima (°C)</th>
-            <th>Temperatura Máxima (°C)</th>
-            <th>Classe da Intensidade do Vento</th>
-            <th>Probabilidade de Precipitação (%)</th>
-            
-            {/* Nao tem dados quase nunca <th>Classe da Intensidade da Precipitação</th> */}
-            <th>Condições Meteorológicas</th>
+          {tamanhoTitulosHoje()}
           </tr>
         </thead>
         <tbody>
@@ -140,10 +228,14 @@ export default function DadosMeteo() {
               <td>{dado.local}</td>
               <td>{dado.tMin}</td>
               <td>{dado.tMax}</td>
-              <td>{dado.classWindSpeed}</td>
-              <td>{dado.probPrecipita}</td>
-              {/* <td>{dado.classPrecInt}</td> */}
-              <td>{dado.descWeatherTypePT}</td>
+              {window.innerWidth > 600 && (
+                <>
+                  <td>{dado.classWindSpeed}</td>
+                  <td>{dado.probPrecipita}</td>
+                  {/* <td>{dado.classPrecInt}</td> */}
+                </>
+              )}
+              <td>{iconesMeteo(dado.descWeatherTypePT)}</td>
             </tr>
           ))}
         </tbody>
@@ -151,7 +243,6 @@ export default function DadosMeteo() {
     </div>
     
 )
-
 
 //se na dropdown a localidade mudar
 const handleLocationChange = (event) => { 
@@ -186,10 +277,7 @@ const cincoDias = (
             <table>
               <thead>
                 <tr>
-                  <th>Dia</th>
-                  <th>Temperatura Mínima (°C)</th>
-                  <th>Temperatura Máxima (°C)</th>
-                  <th>Condições Meteorológicas</th>
+                {tamanhoTitulos()}
                 </tr>
               </thead>
               <tbody>
@@ -198,7 +286,7 @@ const cincoDias = (
                     <td>Dia {index + 1}</td>
                     <td>{dado.tMin}</td>
                     <td>{dado.tMax}</td>
-                    <td>{dado.descWeatherTypePT}</td>
+                    <td>{iconesMeteo(dado.descWeatherTypePT)}</td>
                   </tr>
                 ))}
               </tbody>

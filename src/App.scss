@@ -65,20 +65,19 @@ table {
         padding: 5vw; 
 
     }
+
+    /* Tentei diferentes métodos, grid, flex, order e nao consegui separar visualmente, sem sobreposicao o titulo h1 do botão dark mode */
     .header {
-        position : relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    .header h1 {
-        position : absolute;
-        top : 20px;
-        margin : 0px;
+    .header h1,
+    .header .dark-mode-button {
+        grid-column: 1 / -1;
     }
 
-    .dark-mode-button {
-        position: absolute;
-        top : 5px;
-    }
 
     nav ul {
         /* tornar menu em coluna para caber, menu hamburger seria melhor */
@@ -86,8 +85,28 @@ table {
         align-items: center; 
     }
     nav ul li {
-        margin: 20px ;
+        margin: 10px ;
     }
+
+        nav ul li .button,
+        #hamburger-menu .button {
+            margin-top: 10px;
+        text-decoration: none;
+        background-color: #FF6B6B;
+        color: #FFFFFF;
+        border: none;
+        padding: 10px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 8px;
+        width: 100%;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: center;
+        }
+        .button:hover {
+            background-color: #ff2015;
+        }
 
     .footer  {
         flex-direction: column; 
@@ -108,39 +127,150 @@ table {
 }
 
 /* Tablet min e maximo */
-@media (min-width: 421px) and (max-width: 780px) {
+@media (min-width: 421px) and (max-width: 899px) {
     .App {
-        padding: 5vw;
+        padding: 2vw; 
+
+        table {
+            width: 100%;
+            overflow: auto;
+            padding: 0;
+            margin: 0;
+        }
     }
+    .header {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
     nav ul {
         /* tornar menu em coluna para caber, menu hamburger seria melhor */
         flex-direction: column; 
         align-items: center; 
     }
     nav ul li {
-        margin: 20px ;
+        margin : 20px 20px;
+    }
+
+    .footer  {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .campos-alerta  {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    nav ul li .button,
+    #hamburger-menu .button {
+        margin-top: 10px;
+    text-decoration: none;
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 8px;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    }
+    .button:hover {
+        background-color: #ff2015;
     }
 
 }
 
 /* computador */
-@media (min-width: 780px) {
-}
+@media (min-width: 900px) {
+
+                /* NavBar */
+            
+            nav {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+            
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                display: inline-block;
+                margin : 15px; }
+            
+            nav ul li .button {
+                text-decoration: none;
+                background-color: #FF6B6B; 
+                color: #FFFFFF; 
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                border-radius: 8px;
+                margin: 5px;
+            }
+            
+            nav ul li .button:hover {
+                background-color: #ff2015;
+            }
+            
+            }
+
 
 /* Um wrapper (App) com os tamanhos maximos e minimos */
+
 .App {
+    display: flex;
+    flex-direction: column;
     max-width: 100%;
-    margin: 0 auto;
+    margin: auto auto;
     box-sizing: border-box;
     background-color: #bae7ff;
     border: 1px solid #CED4DA;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
     margin: 0 auto; 
     margin-bottom: 5vh;
-    padding : 5vw;
+    padding :2vw;
+  
+}
+.Sidebar {
+  padding: 20px;
+  text-align: left;
+
 }
 
-header {
+/* Butao para modo escuro */
+.dark-mode-button {
+    background-color: #0a1945;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Sono', sans-serif;
+}
+
+.dark-mode-button i{
+    font-size: 25px; 
+
+}
+
+.dark-mode-button:hover {
+    background-color: #1942be;
+}
+
+ header {
     background-color: #3eb2ff00;
     padding: 10px 20px;
     text-align: center;
@@ -155,15 +285,15 @@ header h1 {
     font-size :2.5em;
     color: #3eb2ff;
 
-}
+} 
 
 footer {
-    margin: 10px auto;
+    width: auto;
+    margin: 10px 10px;
     padding: 10px 10px;
     text-align: center;
     color: #fff;
     background-color: #3eb2ff;
-    width: 100%;
     
 }
 
@@ -216,32 +346,6 @@ body.light-mode h2 {
     color: #172432; 
 }
 
-/* Butao para modo escuro */
-.dark-mode-button {
-    background-color: #0a1945;
-    color: #FFFFFF;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: 'Sono', sans-serif;
-    margin: 20px;
-    position: absolute;
-    top: 18%;
-    right: 20px; 
-    transform: translateY(-50%);
-}
-
-.dark-mode-button i{
-    font-size: 25px; 
-
-}
-
-.dark-mode-button:hover {
-    background-color: #1942be;
-}
 
 /* Cores para modo escuro */
 body.dark-mode {
@@ -287,39 +391,26 @@ body.dark-mode h2 {
 
 /* NavBar */
 
-nav {
-    margin-top: 30px;
-    margin-bottom: 30px;
+nav ul li .button,
+#hamburger-menu .button {
+    margin-top: 10px;
+  text-decoration: none;
+  background-color: #FF6B6B;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
 }
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-nav ul li .button {
-    text-decoration: none;
-    background-color: #FF6B6B; 
-    color: #FFFFFF; 
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 8px;
-    margin: 5px;
-}
-
-nav ul li .button:hover {
+.button:hover {
     background-color: #ff2015;
 }
+
 
 /* Mapa Infravermelho */
 #mapa {
@@ -348,12 +439,16 @@ nav ul li .button:hover {
 .map-svg-container {
     
     padding: 10px 10px;
-    border-radius: 8px;
+    border-collapse: collapse;
+    overflow:hidden;
+    border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: auto;
     margin: 20px auto;
     background-color: #8fd2ff;
-    display: center ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -361,8 +456,11 @@ nav ul li .button:hover {
     width: 100%;
 }
 
+
+
 /* Estilizacao das tabelas de dados meteorologicas */
 table {
+    
     width: 100%;
     border-collapse: collapse;
     border-radius: 12px;
@@ -403,6 +501,14 @@ td {
     font-family: 'Montserrat', sans-serif;
 }
 
+tbody tr td:nth-child(2) {
+    color: rgb(0, 132, 255);
+}
+
+tbody tr td:nth-child(3) {
+    color: rgb(223, 0, 0);
+}
+
 /* Tabela Para o dark mode */
 body.dark-mode table {
     background-color: #2C3E50;
@@ -424,3 +530,4 @@ body.dark-mode tbody tr:hover {
 body.dark-mode th, body.dark-mode td {
     border-color: #3E5060;
 }
+

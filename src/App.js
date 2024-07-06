@@ -15,11 +15,18 @@ import './App.scss';
 function App() {
 
   //para o Darkmode
-  const [isDarkMode, setIsDarkMode] = useState(false); //false for light mode
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    /* Para que dark mode persista entre as diferentes paginas tem que se utilisar local storage */
+    const savedMode = localStorage.getItem('isDarkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  }); //false for light mode
+
 
   //se isDarkMode muda entao useEffect entra em jogo = useEffect é um componente reativo que necessita certas condicoes. Aqui a sua dependencia é isDarkMode
   useEffect(() => {
     // Aplicar a classe do modo escuro a todo o body e retirar light mode
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+
     if (isDarkMode) {
       document.body.classList.add('dark-mode');
       document.body.classList.remove('light-mode');
@@ -37,26 +44,27 @@ function App() {
 
   return (
       <div className="App">
-      <header className="App-header">
-      <button onClick={toggleDarkMode} className="dark-mode-button">
+      <aside className="Sidebar">
+        <button onClick={toggleDarkMode} className="dark-mode-button">
           {window.innerWidth > 1200 ? (
             isDarkMode ? 'Modo Claro' : 'Modo Escuro'
           ) : (
-            isDarkMode ?  <i className="qi-150"></i> :  <i className="qi-100"></i>
-          )
-            }
+            isDarkMode ? <i className="qi-150"></i> : <i className="qi-100"></i>
+          )}
         </button>
+      </aside>      
+      <header className="App-header">
       <h1>Previsão Meteorológica   </h1>
       </header>
       <main>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<MapaInfravermelho />} />
-          <Route path="/dados-meteo" element={<DadosMeteo />} />
-          <Route path="//my-alertas" element={<MinhasAlertas />} />
-        </Routes>
-        </BrowserRouter>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<MapaInfravermelho />} />
+            <Route path="/dados-meteo" element={<DadosMeteo />} />
+            <Route path="//my-alertas" element={<MinhasAlertas />} />
+          </Routes>
+          </BrowserRouter>
         </main>
         <footer>
           <Alertas />
